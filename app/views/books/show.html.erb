@@ -1,0 +1,34 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @book %>
+
+<div>
+  <%= link_to "Edit this book", edit_book_path(@book) %> |
+  <%= link_to "Back to books", books_path %>
+
+  <%= button_to "Destroy this book", @book, method: :delete, data: { confirm: "Are you sure?" } %>
+</div>
+
+<hr>
+
+<h3>Reviews</h3>
+
+<% @book.reviews.each do |review| %>
+  <p><strong>Anonymous</strong>: <%= review.comment %> (⭐ <%= review.rating %>/5)</p>
+  <%= link_to "Delete", book_review_path(@book, review), method: :delete, data: { confirm: "Are you sure?" } %>
+<% end %>
+
+<h4>Add a Review</h4>
+<%= form_with model: [@book, Review.new], local: true do |f| %>
+  <div>
+    <%= f.label :rating %>
+    <%= f.number_field :rating, min: 1, max: 5 %>
+  </div>
+  <div>
+    <%= f.label :comment %>
+    <%= f.text_area :comment %>
+  </div>
+  <div>
+    <%= f.submit "Submit Review" %>
+  </div>
+<% end %>

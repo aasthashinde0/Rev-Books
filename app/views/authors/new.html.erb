@@ -1,0 +1,22 @@
+<% content_for :title, "New Author" %>
+
+<div class="new-author-container">
+  <h1 class="title">New Author</h1>
+
+  <%= render "form", author: @author %>
+
+  <div class="back-link">
+    <%= link_to "← Back to Authors", authors_path, class: "btn-back" %>
+  </div>
+
+  <% if @author.errors.any? %>
+    <div class="error-messages">
+      <h2><%= pluralize(@author.errors.count, "error") %> prevented this author from being saved:</h2>
+      <ul>
+        <% @author.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

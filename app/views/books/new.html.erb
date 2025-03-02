@@ -1,0 +1,22 @@
+<% content_for :title, "New Book" %>
+
+<div class="new-book-container">
+  <h1 class="title">New Book</h1>
+
+  <%= render "form", book: @book %>
+
+  <div class="back-link">
+    <%= link_to "← Back to Books", books_path, class: "btn-back" %>
+  </div>
+
+  <% if @book.errors.any? %>
+    <div class="error-messages">
+      <h2><%= pluralize(@book.errors.count, "error") %> prevented this book from being saved:</h2>
+      <ul>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

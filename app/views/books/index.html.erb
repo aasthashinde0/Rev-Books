@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Review</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Book Review System</h1>
+    </header>
+    <main>
+        <section class="book-list">
+            <% @books.each do |book| %>
+                <article class="book-card">
+                    <h2><%= book.title %></h2>
+                    <p><strong>ISBN:</strong> <%= book.isbn %></p>
+                    <p><strong>Author:</strong> <%= book.author.name if book.author %></p>
+                    <p><%= book.description %></p>
+                    <a href="<%= book_path(book) %>" class="btn">View Details</a>
+                </article>
+            <% end %>
+        </section>
+    </main>
+</body>
+</html>
+

@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Authors" %>
+
+<h1 class="title">Authors</h1>
+
+<div class="authors-grid">
+  <% @authors.each do |author| %>
+    <div class="author-card">
+      <h2><%= author.name %></h2>
+      <p class="bio"><strong>Bio:</strong> <%= truncate(author.bio, length: 500) %></p>
+      <%= link_to "Show this Author", author_path(author), class: "btn-view" %>
+    </div>
+  <% end %>
+</div>
+
